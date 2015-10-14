@@ -12,10 +12,11 @@ namespace MyConsole.Runner
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Enter Latitude:");
-			var keyword = Console.ReadLine();
-
-			var searcher = new LocationSearcher();
+			Console.WriteLine("Enter Name:");
+			var name = Console.ReadLine();
+			var vendorRepo = new VendorRepository();
+			var searcher = new LocationSearcher(vendorRepo);
+			var vendor = searcher.LocateVendor(name);
 			
 			Console.ReadLine();
 		}

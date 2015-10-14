@@ -8,9 +8,16 @@ namespace MyConsole.Domain
 {
 	public class LocationSearcher
 	{
+		private VendorRepository _repo;
+
+		public LocationSearcher(VendorRepository repository)
+		{
+			_repo = repository;		
+		}
+																  
 		public Vendor LocateVendors(decimal latitude, decimal longitude, List<string> keywords)
 		{
-			var vendor =  new Vendor();
+			var vendor = new Vendor();
 			vendor.Name = "Taco Truck Man";
 			vendor.Latitude = latitude;
 			vendor.Longitude = longitude;
@@ -20,11 +27,10 @@ namespace MyConsole.Domain
 
 		public Vendor LocateVendor(string name)
 		{
-			var vendor = new Vendor();
-			vendor.Name = "Taco Truck Man";
-			vendor.Latitude = 10;
-			vendor.Longitude = 12;
-			return vendor;
+			var vendors = _repo.Get();
+			//loop through the vendors...
+			//find the first one matching the name;
+			return vendors[0];
 		}
 	}
 }
